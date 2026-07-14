@@ -165,7 +165,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24
 SESSION_SAVE_EVERY_REQUEST = True
 
 CSRF_TRUSTED_ORIGINS = [
-    https://house-of-busolami.onrender.com,
+    "https://house-of-busolami.onrender.com",
 ]
 
 if not DEBUG:

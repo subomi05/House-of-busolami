@@ -74,11 +74,18 @@ def home(request):
                     client_html,
                     "text/html",
                 )
+                 print("EMAIL_HOST:", settings.EMAIL_HOST)
+                 print("EMAIL_PORT:", settings.EMAIL_PORT)
+                 print("EMAIL_USE_TLS:", settings.EMAIL_USE_TLS)
+                 print("EMAIL_HOST_USER:", settings.EMAIL_HOST_USER)
+                  print("DEFAULT_FROM_EMAIL:", settings.DEFAULT_FROM_EMAIL)
 
-                try:
+                 try:
                     client_email.send()
-                except Exception as e:
-                     print("Client email error:", e)
+                 except Exception as e:
+                    print("Client email error:", repr(e))
+
+            
 
             # ==========================
             # EMAIL TO BUSINESS
@@ -104,7 +111,7 @@ def home(request):
             try:
                  admin_email.send()
             except Exception as e:
-                 print("Admin email error:", e)
+                 print("Admin email error:", repr(e))
             return redirect("appointment_success")
 
     else:

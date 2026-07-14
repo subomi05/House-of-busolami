@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Appointment Confirmation</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#f7f7f7;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.wrapper{
+    width:100%;
+    padding:40px 15px;
+}
+
+.card{
+    max-width:650px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.header{
+    background:#111;
+    text-align:center;
+    padding:40px;
+}
+
+.header img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #D4AF37;
+    margin-bottom:15px;
+}
+
+.header h1{
+    margin:0;
+    color:#D4AF37;
+    font-size:30px;
+}
+
+.header p{
+    margin-top:8px;
+    color:#ddd;
+}
+
+.content{
+    padding:45px;
+}
+
+.content h2{
+    color:#111;
+}
+
+.content p{
+    color:#555;
+    line-height:1.8;
+}
+
+.details{
+    background:#fafafa;
+    border-left:5px solid #D4AF37;
+    padding:25px;
+    margin:35px 0;
+    border-radius:10px;
+}
+
+.details table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.details td{
+    padding:10px 0;
+}
+
+.details td:first-child{
+    font-weight:bold;
+    color:#222;
+    width:40%;
+}
+
+.button{
+    text-align:center;
+    margin-top:35px;
+}
+
+.button a{
+    display:inline-block;
+    padding:15px 35px;
+    background:#D4AF37;
+    color:#111;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:bold;
+}
+
+.footer{
+    background:#111;
+    color:#bbb;
+    text-align:center;
+    padding:30px;
+}
+
+.footer a{
+    color:#D4AF37;
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="card">
+
+<div class="header">
+
+{% if business.logo %}
+<img src="{{ business.logo.url }}" alt="Logo">
+{% endif %}
+
+<h1>{{ business.business_name }}</h1>
+
+<p>Luxury Fashion • Beads • Tailoring</p>
+
+</div>
+
+<div class="content">
+
+<h2>Hello {{ appointment.full_name }},</h2>
+
+<p>
+
+Thank you for choosing <strong>{{ business.business_name }}</strong>.
+
+We have successfully received your appointment request.
+
+Our team will review your booking and contact you shortly.
+
+</p>
+
+<div class="details">
+
+<table>
+
+<tr>
+<td>Service</td>
+<td>{{ appointment.service }}</td>
+</tr>
+
+<tr>
+<td>Preferred Date</td>
+<td>{{ appointment.preferred_date }}</td>
+</tr>
+
+<tr>
+<td>Phone</td>
+<td>{{ appointment.phone }}</td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td>{{ appointment.email }}</td>
+</tr>
+
+{% if appointment.message %}
+
+<tr>
+<td>Notes</td>
+<td>{{ appointment.message }}</td>
+</tr>
+
+{% endif %}
+
+</table>
+
+</div>
+
+<p>
+
+Thank you for trusting us with your fashion journey.
+
+We look forward to creating something beautiful for you.
+
+</p>
+
+<div class="button">
+
+<a href="{{ website_url }}">
+
+Visit Our Website
+
+</a>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<p>
+
+{{ business.business_name }}
+
+</p>
+
+<p>
+
+{{ business.phone }}
+
+|
+
+{{ business.email }}
+
+</p>
+
+<p>
+
+<a href="{{ business.instagram }}">
+
+Instagram
+
+</a>
+
+{% if business.facebook %}
+
+|
+
+<a href="{{ business.facebook }}">
+
+Facebook
+
+</a>
+
+{% endif %}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

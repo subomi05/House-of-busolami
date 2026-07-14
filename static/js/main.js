@@ -191,3 +191,20 @@ window.addEventListener("scroll", () => {
 
 });
 
+/*==========================
+GLIGHTBOX
+===========================*/
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const lightbox = GLightbox({
+        selector: ".gallery-lightbox",
+        touchNavigation: true,
+        loop: true,
+        zoomable: true,
+        draggable: true,
+        openEffect: "zoom",
+        closeEffect: "fade"
+    });
+
+});

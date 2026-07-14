@@ -1,5 +1,4 @@
 from django.db import models
-from PIL import Image
 
 
 class Service(models.Model):
@@ -17,31 +16,15 @@ class Service(models.Model):
         null=True
     )
 
-    is_active = models.BooleanField(
-        default=True,
-        db_index=True
-    )
+    is_active = models.BooleanField(default=True, db_index=True)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
         ordering = ["title"]
 
     def __str__(self):
         return self.title
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.image:
-            img = Image.open(self.image.path)
-
-            if img.height > 1200 or img.width > 1200:
-                img.thumbnail((1200, 1200))
-                img.save(self.image.path, quality=85, optimize=True)
 
 
 class Gallery(models.Model):
@@ -64,48 +47,26 @@ class Gallery(models.Model):
     category = models.CharField(
         max_length=25,
         choices=CATEGORY_CHOICES,
-        db_index=True
+        db_index=True,
     )
 
-    featured = models.BooleanField(
-        default=False,
-        db_index=True
-    )
+    featured = models.BooleanField(default=False, db_index=True)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
         ordering = ["-created_at"]
         verbose_name_plural = "Gallery"
 
-        indexes = [
-            models.Index(fields=["category", "featured"]),
-        ]
-
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.image:
-            img = Image.open(self.image.path)
-
-            if img.height > 1200 or img.width > 1200:
-                img.thumbnail((1200, 1200))
-                img.save(self.image.path, quality=85, optimize=True)
-
 
 class Testimonial(models.Model):
+
     client_name = models.CharField(max_length=100)
 
-    profession = models.CharField(
-        max_length=100,
-        blank=True
-    )
+    profession = models.CharField(max_length=100, blank=True)
 
     message = models.TextField()
 
@@ -117,31 +78,15 @@ class Testimonial(models.Model):
 
     rating = models.PositiveSmallIntegerField(default=5)
 
-    is_active = models.BooleanField(
-        default=True,
-        db_index=True
-    )
+    is_active = models.BooleanField(default=True, db_index=True)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
         ordering = ["-created_at"]
 
     def __str__(self):
         return self.client_name
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.image:
-            img = Image.open(self.image.path)
-
-            if img.height > 1200 or img.width > 1200:
-                img.thumbnail((1200, 1200))
-                img.save(self.image.path, quality=85, optimize=True)
 
 
 class Appointment(models.Model):
@@ -159,10 +104,7 @@ class Appointment(models.Model):
 
     email = models.EmailField(blank=True)
 
-    service = models.ForeignKey(
-        Service,
-        on_delete=models.CASCADE
-    )
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
 
     preferred_date = models.DateField(db_index=True)
 
@@ -172,13 +114,10 @@ class Appointment(models.Model):
         max_length=20,
         choices=STATUS_CHOICES,
         default="pending",
-        db_index=True
+        db_index=True,
     )
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
         ordering = ["-created_at"]
@@ -217,24 +156,8 @@ class BusinessInfo(models.Model):
         return self.business_name
 
     def save(self, *args, **kwargs):
-
         self.pk = 1
-
         super().save(*args, **kwargs)
-
-        if self.logo:
-            logo = Image.open(self.logo.path)
-
-            if logo.height > 1200 or logo.width > 1200:
-                logo.thumbnail((1200, 1200))
-                logo.save(self.logo.path, quality=85, optimize=True)
-
-        if self.hero_image:
-            hero = Image.open(self.hero_image.path)
-
-            if hero.height > 1600 or hero.width > 1600:
-                hero.thumbnail((1600, 1600))
-                hero.save(self.hero_image.path, quality=85, optimize=True)
 
 
 class Statistic(models.Model):
@@ -243,10 +166,7 @@ class Statistic(models.Model):
 
     value = models.CharField(max_length=20)
 
-    is_active = models.BooleanField(
-        default=True,
-        db_index=True
-    )
+    is_active = models.BooleanField(default=True, db_index=True)
 
     icon = models.CharField(
         max_length=50,
@@ -254,10 +174,7 @@ class Statistic(models.Model):
         help_text="Bootstrap icon name (optional)"
     )
 
-    order = models.PositiveIntegerField(
-        default=0,
-        db_index=True
-    )
+    order = models.PositiveIntegerField(default=0, db_index=True)
 
     class Meta:
         ordering = ["order"]

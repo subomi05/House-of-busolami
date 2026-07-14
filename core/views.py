@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
 
 from django.template.loader import render_to_string
-from django.core.mail import EmailMultiAlternatives
-from django.utils.html import strip_tags
 from django.conf import settings
 
 from .models import (
@@ -16,20 +13,59 @@ from .models import (
 
 from .forms import AppointmentForm
 
+import requests
+
+
+def send_brevo_email(to_email, to_name, subject, html_content):
+    """
+    Send an email using Brevo API
+    """
+
+    url = "https://api.brevo.com/v3/smtp/email"
+
+    headers = {
+        "accept": "application/json",
+        "api-key": settings.BREVO_API_KEY,
+        "content-type": "application/json",
+    }
+
+    payload = {
+        "sender": {
+            "name": "House of Busolami",
+            "email": settings.DEFAULT_FROM_EMAIL,
+        },
+        "to": [
+            {
+                "email": to_email,
+                "name": to_name,
+            }
+        ],
+        "subject": subject,
+        "htmlContent": html_content,
+    }
+
+    response = requests.post(
+        url,
+        headers=headers,
+        json=payload,
+        timeout=30,
+    )
+
+    print("Brevo Status:", response.status_code)
+    print("Brevo Response:", response.text)
+
+    response.raise_for_status()
+
 
 def home(request):
 
-    services = Service.objects.filter(
-        is_active=True
-    )
+    services = Service.objects.filter(is_active=True)
 
     statistics = Statistic.objects.filter(
         is_active=True
     ).order_by("order")
 
-    gallery = Gallery.objects.order_by(
-        "-created_at"
-    )
+    gallery = Gallery.objects.order_by("-created_at")
 
     testimonials = Testimonial.objects.filter(
         is_active=True
@@ -53,67 +89,47 @@ def home(request):
                 "website_url": website_url,
             }
 
-            # ==========================
-            # EMAIL TO CLIENT
-            # ==========================
+            # ===========================
+            # CLIENT EMAIL
+            # ===========================
 
             if appointment.email:
 
                 client_html = render_to_string(
                     "emails/appointment_client.html",
-                    context
+                    context,
                 )
-
-                client_email = EmailMultiAlternatives(
-                    subject="Appointment Confirmation | House of Busolami",
-                    body=strip_tags(client_html),
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=[appointment.email],
-                )
-
-                client_email.attach_alternative(
-                    client_html,
-                    "text/html",
-                )
-
-                print("EMAIL_HOST:", settings.EMAIL_HOST)
-                print("EMAIL_PORT:", settings.EMAIL_PORT)
-                print("EMAIL_USE_TLS:", settings.EMAIL_USE_TLS)
-                print("EMAIL_HOST_USER:", settings.EMAIL_HOST_USER)
-                print("DEFAULT_FROM_EMAIL:", settings.DEFAULT_FROM_EMAIL)
 
                 try:
-                    client_email.send()
-                    print("Client email sent successfully.")
+                    send_brevo_email(
+                        to_email=appointment.email,
+                        to_name=appointment.full_name,
+                        subject="Appointment Confirmation | House of Busolami",
+                        html_content=client_html,
+                    )
                 except Exception as e:
-                    print("Client email error:", repr(e))
+                    print("CLIENT EMAIL ERROR:", e)
 
-            # ==========================
-            # EMAIL TO BUSINESS
-            # ==========================
+            # ===========================
+            # BUSINESS EMAIL
+            # ===========================
 
-            admin_html = render_to_string(
-                "emails/appointment_admin.html",
-                context
-            )
+            if business and business.email:
 
-            admin_email = EmailMultiAlternatives(
-                subject="New Appointment Booking",
-                body=strip_tags(admin_html),
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[business.email],
-            )
+                admin_html = render_to_string(
+                    "emails/appointment_admin.html",
+                    context,
+                )
 
-            admin_email.attach_alternative(
-                admin_html,
-                "text/html",
-            )
-
-            try:
-                admin_email.send()
-                print("Admin email sent successfully.")
-            except Exception as e:
-                print("Admin email error:", repr(e))
+                try:
+                    send_brevo_email(
+                        to_email=business.email,
+                        to_name=business.business_name,
+                        subject="New Appointment Booking",
+                        html_content=admin_html,
+                    )
+                except Exception as e:
+                    print("ADMIN EMAIL ERROR:", e)
 
             return redirect("appointment_success")
 
@@ -130,23 +146,15 @@ def home(request):
         "form": form,
     }
 
-    return render(
-        request,
-        "home.html",
-        context,
-    )
+    return render(request, "home.html", context)
 
 
 def gallery_page(request):
 
-    gallery = (
-        Gallery.objects
-        .order_by("-created_at")
-    )
+    gallery = Gallery.objects.order_by("-created_at")
 
     business = (
-        BusinessInfo.objects
-        .only(
+        BusinessInfo.objects.only(
             "business_name",
             "logo",
             "phone",
@@ -156,8 +164,7 @@ def gallery_page(request):
             "instagram",
             "facebook",
             "tiktok",
-        )
-        .first()
+        ).first()
     )
 
     context = {
@@ -173,12 +180,10 @@ def appointment_success(request):
 
     business = BusinessInfo.objects.first()
 
-    context = {
-        "business": business,
-    }
-
     return render(
         request,
         "appointment_success.html",
-        context,
+        {
+            "business": business,
+        },
     )

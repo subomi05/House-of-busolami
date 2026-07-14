@@ -210,4 +210,6 @@ DEFAULT_FROM_EMAIL = os.getenv(
     EMAIL_HOST_USER
 )
 
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")\
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

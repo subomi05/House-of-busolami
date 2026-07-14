@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Gallery | House of Busolami{% endblock %}
+
+{% block content %}
+
+<!-- Gallery Hero -->
+<section class="page-hero">
+
+    <div class="page-hero-overlay">
+
+        <div class="container text-center">
+
+            <span class="section-subtitle" data-aos="fade-down">
+                OUR PORTFOLIO
+            </span>
+
+            <h1 data-aos="fade-up">
+                Our Gallery
+            </h1>
+
+            <div class="divider mx-auto"></div>
+
+            <p data-aos="fade-up" data-aos-delay="150">
+                Explore our collection of luxury fashion pieces, handcrafted
+                bead accessories, bead bags, fascinators, traditional wear,
+                tailoring materials, and custom-made designs created with
+                elegance and exceptional craftsmanship.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery py-5">
+
+    <div class="container">
+
+        <!-- Filter Buttons -->
+
+        <div class="gallery-filter text-center mb-5" data-aos="fade-up">
+
+            <button class="filter-btn active"
+                    data-filter="all">
+                All
+            </button>
+
+            {% for category in gallery_categories %}
+
+            <button class="filter-btn"
+                    data-filter="{{ category.0 }}">
+
+                {{ category.1 }}
+
+            </button>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="text-center mb-4">
+
+    <h5 class="gallery-count">
+        Showing
+        <span id="galleryCount">{{ gallery|length }}</span>
+        Designs
+    </h5>
+
+</div>
+
+
+        <!-- Gallery Grid -->
+
+        {% include "includes/gallery.html" %}
+
+    </div>
+
+</section>
+
+{% endblock %}

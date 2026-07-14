@@ -1,0 +1,68 @@
+<section id="gallery">
+
+    <div class="row g-4">
+
+        {% for item in gallery %}
+
+        <div class="col-lg-4 col-md-6 gallery-item"
+             data-category="{{ item.category }}"
+             data-aos="zoom-in"
+             data-aos-delay="{{ forloop.counter0|add:'1' }}00">
+
+            <div class="gallery-card">
+
+                <a href="{{ item.image.url }}"
+                   class="gallery-lightbox"
+                   data-gallery="asb-gallery"
+                   data-title="{{ item.title }}">
+
+                    <img src="{{ item.image.url }}"
+                         class="gallery-image"
+                         alt="{{ item.title }}"
+                         loading="lazy">
+
+                    <div class="gallery-overlay">
+
+                        <div class="gallery-overlay-content">
+
+                            <h5>{{ item.title }}</h5>
+
+                            <p>{{ item.get_category_display }}</p>
+
+                            <span class="gallery-icon">
+
+                                <i class="bi bi-plus-lg"></i>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center py-5">
+
+            <i class="bi bi-images display-1 text-muted"></i>
+
+            <h4 class="mt-3">
+                No Gallery Items Yet
+            </h4>
+
+            <p class="text-muted">
+                Gallery images will appear here once they are added.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>

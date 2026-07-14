@@ -1,0 +1,66 @@
+<section id="gallery" class="gallery py-5">
+
+    <div class="container">
+
+        <div class="section-title text-center mb-5">
+
+            <span class="section-subtitle">
+                OUR GALLERY
+            </span>
+
+            <h2>
+                Latest Creations
+            </h2>
+
+            <div class="divider"></div>
+
+            <p>
+                Explore some of our recent work.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% for item in gallery|slice:":6" %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="gallery-card">
+
+                    <a href="{{ item.image.url }}"
+                       class="gallery-lightbox">
+
+                        <img src="{{ item.image.url }}"
+                             class="gallery-image"
+                             alt="{{ item.title }}">
+
+                    </a>
+
+                    <div class="gallery-content">
+
+                        <h5>{{ item.title }}</h5>
+
+                        <small>{{ item.get_category_display }}</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <a href="{% url 'gallery' %}" class="btn btn-gold">
+                View Full Gallery
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

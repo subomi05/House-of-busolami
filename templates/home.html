@@ -1,23 +1,34 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Home | HOUSE OF BUSOLAMI{% endblock %}
+{% block title %}Home | House of Busolami{% endblock %}
 
 {% block content %}
 
-<div class="container py-5 text-center">
+<!-- Hero -->
+{% include "includes/hero.html" %}
 
-    <h1 class="display-4 fw-bold">
-        Welcome to HOUSE OF BUSOLAMI
-    </h1>
+<!-- About -->
+{% include "includes/about.html" %}
 
-    <p class="lead">
-        Luxury Tailoring • Bead Making • Handcrafted Bead Bags
-    </p>
+<!-- Services -->
+{% include "includes/services.html" %}
 
-    <a href="#" class="btn btn-dark btn-lg mt-3">
-        Explore Our Collection
-    </a>
+<!-- Why Choose Us -->
+{% include "includes/why_choose_us.html" %}
 
-</div>
+<!-- Gallery Preview -->
+{% include "includes/gallery_preview.html" %}
+
+<!-- Testimonials -->
+{% include "includes/testimonials.html" %}
+
+<!-- Appointment -->
+{% include "includes/appointment.html" %}
+
+<!-- Contact -->
+{% include "includes/contact.html" %}
+
+{% include "includes/footer.html" %}
 
 {% endblock %}

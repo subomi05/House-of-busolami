@@ -1,0 +1,109 @@
+<section id="appointment" class="appointment">
+
+    <div class="container">
+
+        <div class="section-title text-center mb-5">
+
+            <span class="section-subtitle">
+                BOOK AN APPOINTMENT
+            </span>
+
+            <h2>
+                Let's Bring Your Vision to Life
+            </h2>
+
+            <div class="divider"></div>
+
+            <p>
+                Ready for a custom outfit or handcrafted bead design? Fill out the form below and our team will contact you to confirm your appointment.
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="appointment-card">
+
+                    {% if messages %}
+
+    {% for message in messages %}
+
+        <div class="alert alert-success alert-dismissible fade show mb-4">
+
+            {{ message }}
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    {% endfor %}
+
+{% endif %}
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Full Name</label>
+                                {{ form.full_name }}
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Phone Number</label>
+                                {{ form.phone }}
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Email Address</label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Choose a Service</label>
+                                {{ form.service }}
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label class="form-label">Preferred Date</label>
+                                {{ form.preferred_date }}
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label class="form-label">Additional Notes</label>
+                                {{ form.message }}
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <button type="submit" class="btn btn-gold w-100 py-3">
+
+                                    <i class="bi bi-calendar-check me-2"></i>
+
+                                    Book Appointment
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

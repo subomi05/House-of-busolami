@@ -1,0 +1,164 @@
+<section id="about" class="about py-5">
+
+    <div class="container">
+
+        <!-- Section Title -->
+        <div class="section-title text-center mb-5">
+
+            <span class="section-subtitle" data-aos="fade-down">
+                ABOUT US
+            </span>
+
+            <h2 data-aos="fade-up">
+                Crafting Elegance with Every Stitch & Bead
+            </h2>
+
+            <div class="divider"></div>
+
+            <p data-aos="fade-up" data-aos-delay="100">
+                At {{ business.business_name }}, we are passionate about creating
+                timeless fashion pieces, handcrafted bead accessories, elegant
+                bead bags, fascinators, traditional wear, and premium tailoring
+                materials that celebrate beauty, confidence, and craftsmanship.
+            </p>
+
+        </div>
+
+        <div class="row align-items-center gy-5">
+
+            <!-- Business Image -->
+            <div class="col-lg-6" data-aos="fade-right">
+
+                {% if business.hero_image %}
+                <img src="{{ business.hero_image.url }}"
+                     class="img-fluid rounded-4 shadow-lg"
+                     alt="{{ business.business_name }}">
+                {% endif %}
+
+            </div>
+
+            <!-- About Content -->
+            <div class="col-lg-6" data-aos="fade-left">
+
+                <h3 class="mb-4">
+                    Fashion Designed Around Your Style
+                </h3>
+
+                <p>
+                    Every design we create is carefully handcrafted with precision,
+                    creativity, and attention to detail. Whether you're looking for
+                    a custom outfit, luxury bead accessories, fascinators,
+                    traditional attire, or premium tailoring materials,
+                    our goal is to bring your vision to life.
+                </p>
+
+                <p>
+                    At <strong>{{ business.business_name }}</strong>,
+                    excellence, elegance, and customer satisfaction are at the heart
+                    of everything we do. Every piece is created to make you look and
+                    feel confident, stylish, and unforgettable.
+                </p>
+
+                <!-- Statistics -->
+                <div class="row mt-5">
+
+                    {% for stat in statistics %}
+
+                    <div class="col-md-6 col-6 mb-4"
+                         data-aos="zoom-in"
+                         data-aos-delay="{{ forloop.counter }}00">
+
+                        <div class="stat-card text-center p-4">
+
+                            {% if stat.icon %}
+                            <div class="stat-icon mb-3">
+                                <i class="bi bi-{{ stat.icon }}"></i>
+                            </div>
+                            {% endif %}
+
+                            <h2 class="counter text-warning fw-bold"
+                                data-target="{{ stat.value }}">
+                                0
+                            </h2>
+
+                            <p class="mb-0">
+                                {{ stat.title }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    {% empty %}
+
+                    <div class="col-md-6 col-6 mb-4">
+
+                        <div class="stat-card text-center p-4">
+
+                            <h2 class="counter text-warning fw-bold"
+                                data-target="200+">
+                                0
+                            </h2>
+
+                            <p>Happy Clients</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-6 mb-4">
+
+                        <div class="stat-card text-center p-4">
+
+                            <h2 class="counter text-warning fw-bold"
+                                data-target="500+">
+                                0
+                            </h2>
+
+                            <p>Completed Orders</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-6 mb-4">
+
+                        <div class="stat-card text-center p-4">
+
+                            <h2 class="counter text-warning fw-bold"
+                                data-target="5+">
+                                0
+                            </h2>
+
+                            <p>Years Experience</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-6 mb-4">
+
+                        <div class="stat-card text-center p-4">
+
+                            <h2 class="counter text-warning fw-bold"
+                                data-target="100%">
+                                0
+                            </h2>
+
+                            <p>Customer Satisfaction</p>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

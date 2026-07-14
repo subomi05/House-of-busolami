@@ -1,5 +1,137 @@
-<footer class="bg-dark text-white text-center py-4 mt-5">
-    <p class="mb-0">
-        © 2026 HOUSE OF BUSOLAMI. All Rights Reserved.
-    </p>
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row gy-5">
+
+            <!-- Brand -->
+
+            <div class="col-lg-4">
+
+                <h3 class="footer-logo">
+                    HOUSE OF BUSOLAMI
+                </h3>
+
+                <p class="footer-text">
+                    We specialize in luxury tailoring, handcrafted bead designs,
+                    elegant bead bags, fascinators, traditional wear, and premium
+                    tailoring materials. Every piece is created with quality,
+                    creativity, and attention to detail.
+                </p>
+
+                <div class="footer-social">
+
+                    {% if business.facebook %}
+                    <a href="{{ business.facebook }}" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if business.instagram %}
+                    <a href="{{ business.instagram }}" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if business.whatsapp %}
+                    <a href="https://wa.me/{{ business.whatsapp }}" target="_blank">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="col-lg-2 col-md-6">
+
+                <h5>Quick Links</h5>
+
+                <ul class="footer-links">
+
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#appointment">Book</a></li>
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Services -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <h5>Our Services</h5>
+
+                <ul class="footer-links">
+
+                    {% for service in services %}
+
+                    <li>{{ service.title }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+            <!-- Contact -->
+
+            <div class="col-lg-3">
+
+                <h5>Contact Info</h5>
+
+                <p>
+
+                    <i class="bi bi-telephone-fill text-warning"></i>
+
+                    {{ business.phone }}
+
+                </p>
+
+                <p>
+
+                    <i class="bi bi-envelope-fill text-warning"></i>
+
+                    {{ business.email }}
+
+                </p>
+
+                <p>
+
+                    <i class="bi bi-geo-alt-fill text-warning"></i>
+
+                    {{ business.address }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © {% now "Y" %} House of Busolami. All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed by <strong>Akinrinade victor</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
 </footer>

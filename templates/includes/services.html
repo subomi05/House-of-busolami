@@ -1,0 +1,61 @@
+<!-- Services Section -->
+<section  id="services" class="services py-5">
+
+    <div class="container">
+
+        <div class="section-title text-center mb-5">
+
+    <span class="section-subtitle">
+        OUR SERVICES
+    </span>
+    <div class="divider"></div>
+
+    <h2>
+        Crafted With Passion
+    </h2>
+
+    <p>
+        Premium tailoring, bead making and handcrafted luxury accessories.
+    </p>
+
+</div>
+
+        <div class="row g-4">
+
+    {% for service in services %}
+
+    <div class="col-lg-4 col-md-6">
+
+<div class="service-card">
+
+    {% if service.image %}
+        <img src="{{ service.image.url }}"
+             class="service-image"
+             alt="{{ service.title }}">
+    {% endif %}
+
+    <div class="service-icon">
+        <i class="bi bi-{{ service.icon }}"></i>
+    </div>
+
+    <h4>{{ service.title }}</h4>
+
+    <p>{{ service.description }}</p>
+
+</div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="col-12 text-center">
+        <p>No services available yet.</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+    </div>
+
+</section>

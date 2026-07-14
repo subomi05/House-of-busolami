@@ -1,0 +1,97 @@
+<section id="testimonials" class="testimonials py-5">
+
+    <div class="container">
+
+  <div class="section-title text-center mb-5">
+
+    <span class="section-subtitle">
+        TESTIMONIALS
+    </span>
+    <div class="divider"></div>
+
+    <h2>
+        What Our Clients Say
+    </h2>
+
+    <p>
+        We let our work speak through our happy customers.
+    </p>
+
+</div>
+
+        <div id="testimonialCarousel"
+             class="carousel slide"
+             data-bs-ride="carousel"
+             data-bs-interval="5000">
+
+            <div class="carousel-inner">
+
+                {% for testimonial in testimonials %}
+
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                    <div class="testimonial-card mx-auto">
+
+                        {% if testimonial.image %}
+                        <img src="{{ testimonial.image.url }}"
+                             class="testimonial-image"
+                             alt="{{ testimonial.client_name }}">
+                        {% endif %}
+
+                        <div class="stars">
+
+                            {% for i in "12345" %}
+
+                                {% if forloop.counter <= testimonial.rating %}
+                                    <i class="bi bi-star-fill"></i>
+                                {% else %}
+                                    <i class="bi bi-star"></i>
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+
+                        <p class="testimonial-message">
+
+                            "{{ testimonial.message }}"
+
+                        </p>
+
+                        <h5>{{ testimonial.client_name }}</h5>
+
+                        <small>{{ testimonial.profession }}</small>
+
+                        <div class="gold-line"></div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="prev">
+
+                <span class="carousel-control-prev-icon"></span>
+
+            </button>
+
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#testimonialCarousel"
+                    data-bs-slide="next">
+
+                <span class="carousel-control-next-icon"></span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>

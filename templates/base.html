@@ -4,10 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}House of busolami{% endblock %}</title>
+
+    <title>{% block title %}House of Busolami | Luxury Fashion & Tailoring{% endblock %}</title>
+
+    <link rel="icon"
+      type="image/png"
+      href="{% static 'images/business-logo.png' %}">
+
+    <meta name="description"
+      content="House of Busolami specializes in luxury tailoring, custom-made clothing, handcrafted bead accessories, bead bags, fascinators, traditional wear, and premium tailoring materials.">
+
+    <meta name="keywords"
+      content="House of Busolami, tailoring, fashion designer, bead making, bead bags, fascinators, traditional wear, tailoring materials, Nigeria">
+
+   <meta name="author"
+      content="Akinrinade victor">
+
+    <meta name="robots"
+      content="index, follow">
+
+    <meta property="og:title"
+      content="House of Busolami">
+
+    <meta property="og:description"
+      content="Luxury tailoring, bead making, bead bags, fascinators and premium fashion accessories.">
+
+    <meta property="og:type"
+      content="website">
+
+    <meta property="og:image"
+      content="{% static 'images/business-logo.png' %}">
+
+    <meta name="theme-color" content="#D4AF37">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -16,12 +61,70 @@
 
 {% include "includes/navbar.html" %}
 
+{% if messages %}
+
+<div class="container mt-3">
+
+    {% for message in messages %}
+
+        <div class="alert alert-success alert-dismissible fade show">
+
+            {{ message }}
+
+            <button
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
 {% block content %}
 {% endblock %}
 
-{% include "includes/footer.html" %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({
+    duration:1000,
+    once:true
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+<script>
+    const lightbox = GLightbox({
+        selector: '.gallery-lightbox',
+        touchNavigation: true,
+        loop: true,
+        zoomable: true,
+        openEffect: 'zoom',
+        closeEffect: 'fade'
+    });
+</script>
+
+<!-- Back To Top Button -->
+
+<button id="backToTop" class="back-to-top">
+
+    <i class="bi bi-arrow-up"></i>
+
+</button>
+
+
+
 <script src="{% static 'js/main.js' %}"></script>
 
 </body>

@@ -1,42 +1,79 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="/">
-            HOUSE OF BUSOLAMI
+
+       <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+
+            {% if business and business.logo %}
+                <img src="{{ business.logo.url }}"
+                     alt="{{ business.business_name }}"
+                     class="navbar-logo me-2">
+            {% endif %}
+
+            <span class="logo">
+                {% if business %}
+                    {{ business.business_name }}
+                {% else %}
+                    ASB COLLECTIONS
+                {% endif %}
+            </span>
+
         </a>
 
-        <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbar">
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
 
             <span class="navbar-toggler-icon"></span>
+
         </button>
 
-        <div class="collapse navbar-collapse" id="navbar">
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'home' %}#hero">Home</a>
+    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}#about">About</a>
+    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}#services">Services</a>
+    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Gallery</a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'gallery' %}">
+            Gallery
+        </a>
+    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}#testimonials">
+            Testimonials
+        </a>
+    </li>
 
-            </ul>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}#contact">
+            Contact
+        </a>
+    </li>
+
+    <li class="nav-item ms-lg-3">
+        <a class="btn btn-gold px-4" href="{% url 'home' %}#appointment">
+            Book Now
+        </a>
+    </li>
+
+</ul>
 
         </div>
+
     </div>
 </nav>

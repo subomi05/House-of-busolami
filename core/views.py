@@ -75,7 +75,10 @@ def home(request):
                     "text/html",
                 )
 
-                client_email.send(fail_silently=True)
+                try:
+                    client_email.send()
+                except Exception as e:
+                     print("Client email error:", e)
 
             # ==========================
             # EMAIL TO BUSINESS
@@ -98,8 +101,10 @@ def home(request):
                 "text/html",
             )
 
-            admin_email.send(fail_silently=True)
-
+            try:
+                 admin_email.send()
+            except Exception as e:
+                 print("Admin email error:", e)
             return redirect("appointment_success")
 
     else:

@@ -164,7 +164,9 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SESSION_COOKIE_AGE = 60 * 60 * 24
 SESSION_SAVE_EVERY_REQUEST = True
 
-CSRF_TRUSTED_ORIGINS = [https://house-of-busolami.onrender.com]
+CSRF_TRUSTED_ORIGINS = [
+    "https://house-of-busolami.onrender.com",
+]
 
 if not DEBUG:
 

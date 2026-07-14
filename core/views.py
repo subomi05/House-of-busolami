@@ -75,7 +75,7 @@ def home(request):
                     "text/html",
                 )
 
-                client_email.send()
+                client_email.send(fail_silently=True)
 
             # ==========================
             # EMAIL TO BUSINESS
@@ -98,7 +98,7 @@ def home(request):
                 "text/html",
             )
 
-            admin_email.send()
+            admin_email.send(fail_silently=True)
 
             return redirect("appointment_success")
 

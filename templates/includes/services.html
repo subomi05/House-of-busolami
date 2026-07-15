@@ -1,60 +1,71 @@
 <!-- Services Section -->
-<section  id="services" class="services py-5">
+<!-- Services Section -->
+<section id="services" class="services py-5">
 
     <div class="container">
 
         <div class="section-title text-center mb-5">
 
-    <span class="section-subtitle">
-        OUR SERVICES
-    </span>
-    <div class="divider"></div>
+            <span class="section-subtitle">
+                OUR SERVICES
+            </span>
 
-    <h2>
-        Crafted With Passion
-    </h2>
+            <div class="divider"></div>
 
-    <p>
-        Premium tailoring, bead making and handcrafted luxury accessories.
-    </p>
+            <h2>
+                Crafted With Passion
+            </h2>
 
-</div>
+            <p>
+                Premium tailoring, bead making and handcrafted luxury accessories.
+            </p>
+
+        </div>
 
         <div class="row g-4">
 
-    {% for service in services %}
+            {% for service in services %}
 
-    <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6">
 
-<div class="service-card">
+                <a href="/#appointment" class="service-link">
 
-    {% if service.image %}
-        <img src="{{ service.image.url }}"
-             class="service-image"
-             alt="{{ service.title }}">
-    {% endif %}
+                    <div class="service-card">
 
-    <div class="service-icon">
-        <i class="bi bi-{{ service.icon }}"></i>
-    </div>
+                        {% if service.image %}
+                            <img src="{{ service.image.url }}"
+                                 class="service-image"
+                                 alt="{{ service.title }}">
+                        {% endif %}
 
-    <h4>{{ service.title }}</h4>
+                        <div class="service-icon">
+                            <i class="bi bi-{{ service.icon }}"></i>
+                        </div>
 
-    <p>{{ service.description }}</p>
+                        <h4>{{ service.title }}</h4>
 
-</div>
+                        <p>{{ service.description }}</p>
 
-    </div>
+                        <div class="service-book">
+                            Book Appointment
+                            <i class="bi bi-arrow-right"></i>
+                        </div>
 
-    {% empty %}
+                    </div>
 
-    <div class="col-12 text-center">
-        <p>No services available yet.</p>
-    </div>
+                </a>
 
-    {% endfor %}
+            </div>
 
-</div>
+            {% empty %}
+
+            <div class="col-12 text-center">
+                <p>No services available yet.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
 
     </div>
 

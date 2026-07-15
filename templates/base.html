@@ -107,22 +107,28 @@ AOS.init({
 
 import PhotoSwipeLightbox from "https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.js";
 
-const lightbox = new PhotoSwipeLightbox({
+const galleryGrid = document.querySelector("#gallery .row");
 
-    gallery: "#gallery",
+if (galleryGrid) {
 
-    children: "a",
+    const lightbox = new PhotoSwipeLightbox({
 
-    showHideAnimationType: "zoom",
+        gallery: "#gallery .row",
 
-    bgOpacity: .95,
+        children: ".gallery-card > a",
 
-    pswpModule: () =>
-        import("https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.esm.js")
+        showHideAnimationType: "zoom",
 
-});
+        bgOpacity: 0.95,
 
-lightbox.init();
+        pswpModule: () =>
+            import("https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.esm.js")
+
+    });
+
+    lightbox.init();
+
+}
 
 </script>
 

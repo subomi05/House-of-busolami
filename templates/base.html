@@ -105,14 +105,17 @@ AOS.init({
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
 <script>
-    const lightbox = GLightbox({
-        selector: '.gallery-lightbox',
-        touchNavigation: true,
-        loop: true,
-        zoomable: true,
-        openEffect: 'zoom',
-        closeEffect: 'fade'
-    });
+  const lightbox = GLightbox({
+    selector: ".gallery-lightbox",
+    touchNavigation: true,
+    loop: true,
+    zoomable: false,
+    draggable: false,
+    openEffect: "fade",
+    closeEffect: "fade",
+    width: "90vw",
+    height: "90vh"
+  });
 </script>
 
 <!-- Back To Top Button -->

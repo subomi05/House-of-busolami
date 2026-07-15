@@ -42,7 +42,21 @@ class Gallery(models.Model):
 
     title = models.CharField(max_length=100)
 
-    image = models.ImageField(upload_to="gallery/")
+    image = models.ImageField(
+        upload_to="gallery/",
+        width_field="image_width",
+        height_field="image_height",
+    )
+
+    image_width = models.PositiveIntegerField(
+        editable=False,
+        default=0,
+    )
+
+    image_height = models.PositiveIntegerField(
+        editable=False,
+        default=0,
+    )
 
     category = models.CharField(
         max_length=25,

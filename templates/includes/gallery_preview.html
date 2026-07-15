@@ -28,8 +28,10 @@
 
                 <div class="gallery-card">
 
-                    <a href="{{ item.image.url }}"
-                       class="gallery-lightbox">
+                   <img src="{{ item.image.url|add:'?f_auto,q_auto,w=700,c_fill' }}"
+                    class="gallery-image"
+                    alt="{{ item.title }}"
+                    loading="lazy">
 
                         <img src="{{ item.image.url }}"
                              class="gallery-image"

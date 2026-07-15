@@ -1306,9 +1306,9 @@ BACK TO TOP BUTTON
 
     position:fixed;
 
-    bottom:100px;
+    bottom:105px;
 
-    right:25px;
+    right:30px;
 
     width:55px;
 
@@ -1342,7 +1342,7 @@ BACK TO TOP BUTTON
 
     transition:all .4s ease;
 
-    z-index:999;
+    z-index:998;
 
 }
 
@@ -1447,7 +1447,7 @@ WHATSAPP FLOAT
 
 .whatsapp-float{
     position:fixed;
-    bottom:100px;
+    bottom:25px;
     right:30px;
     width:65px;
     height:65px;
